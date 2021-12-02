@@ -18,6 +18,22 @@ http://research.iac.es/sieinvens/python-course/sympy.html
 https://relopezbriega.github.io/blog/2015/06/14/algebra-lineal-con-python/
 https://www.superprof.es/diccionario/matematicas/algebralineal/regla-cramer.html
 https://es.acervolima.com/2021/02/09/python-sympy-metodo-matrix-eigenvects/
+https://pythondiario.com/2019/01/matrices-en-python-y-numpy.html
+https://yosoytuprofe.20minutos.es/2016/10/18/potencia-n-esima-de-una-matriz/
+https://www.i-ciencias.com/pregunta/73686/una-matriz-a-la-potencia-de-cero-da-matriz-identidad-aunque-no-tenga-inversa
+http://pyscience-brasil.wikidot.com/docitem:numpy-identity
+https://www.delftstack.com/pt/api/numpy/python-numpy-linalg.inverse/
+https://numpy.org/doc/stable/reference/generated/numpy.linalg.solve.html
+https://github.com/platzi/algebra-lineal-python
+https://github.com/platzi/algebra-lineal-python/blob/master/09%20-%20Transformaciones%20Lineales%20y%20Descomposicion%20de%20Matrices/Calcular%20autovalores%20y%20autovectores.ipynb
+https://interactivechaos.com/es/python/scenario/inversion-de-un-array-numpy
+https://www.vooo.pro/insights/wp-content/uploads/2018/04/Vooo-Insights-Python_numpy_acesso_rapido.pdf
+https://runebook.dev/es/docs/numpy/reference/generated/numpy.diag
+https://www.stat.auckland.ac.nz/~fewster/325/notes/ch8.pdf
+https://www.youtube.com/watch?v=8cXG5lF7pvA
+https://www.youtube.com/watch?v=13DHglQag0g&t=126s
+https://www.youtube.com/watch?v=4W9a0J69Oqg
+https://ece307.cankaya.edu.tr/uploads/files/introduction%20to%20probability%20(bertsekas,%202nd,%202008).pdf
 '''
 #######################################################
 
