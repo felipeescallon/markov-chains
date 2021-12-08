@@ -80,6 +80,6 @@ nx.draw_networkx_labels(G, pos, font_weight=2)
 nx.draw_networkx_edge_labels(G, pos, edge_labels)
 plt.axis('off');    
 #plt.savefig("../images/mc-matplotlib.svg", bbox_inches='tight')
-#plt.savefig("./images/markov_chain.png", bbox_inches='tight')
+plt.savefig("./images/markov_chain.png", bbox_inches='tight')
 #plt.savefig("markov_chain.png", bbox_inches='tight')
 #nx.write_dot(G, 'mc.dot')
