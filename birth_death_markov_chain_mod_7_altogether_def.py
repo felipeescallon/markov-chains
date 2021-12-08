@@ -4,9 +4,6 @@ Created on Wed Dec  1 22:27:53 2021
 
 @author: Administrador (Andrés Felipe Escallón Portilla)
 """
-
-
-
 ##############REFERENCES################################
 '''
 https://claudiovz.github.io/scipy-lecture-notes-ES/packages/sympy.html
@@ -34,6 +31,7 @@ https://www.youtube.com/watch?v=8cXG5lF7pvA
 https://www.youtube.com/watch?v=13DHglQag0g&t=126s
 https://www.youtube.com/watch?v=4W9a0J69Oqg
 https://ece307.cankaya.edu.tr/uploads/files/introduction%20to%20probability%20(bertsekas,%202nd,%202008).pdf
+http://blog.espol.edu.ec/estg1003/tag/cadenas-markov/
 '''
 #######################################################
 
@@ -60,6 +58,8 @@ print()
 print("birth_death_markov_chain:")
 print()
 
+#working symbollically with sympy
+
 p0 = Symbol('p0')
 p1 = Symbol('p1')
 p2 = Symbol('p2')
@@ -68,7 +68,7 @@ p3 = Symbol('p3')
 q1 = Symbol('q1')
 q2 = Symbol('q2')
 q3 = Symbol('q3')
-
+#(p0,p1,p2,q1,q2,q3) = symbols("p0,p1,p2,q1,q2,q3") # it also works this way
 
 #pi0 = Symbol('pi0')
 #pi1 = Symbol('pi1')
@@ -76,10 +76,13 @@ q3 = Symbol('q3')
 #pi3 = Symbol('pi3')
 (pi0,pi1,pi2,pi3) = symbols("pi0,pi1,pi2,pi3")
 
+
+#transition matrix
 P = Matrix( [ [1-p0, p0, 0, 0],  [q1, 1-p1-q1, p1, 0], [0, q2, 1-p2-q2, p2], [0, 0, q3, 1-q3]  ] )
 print('\n P:\n', P)
 print('\n det(P):\n', P.det())
 
+#pi (row vector)
 Pi = Matrix( [pi0,pi1,pi2,pi3] ).T #row vector = column vector transposed 
 print('\nPi:\n',Pi)
 
@@ -97,7 +100,6 @@ eigenvalue = 1
 Mmod = Matrix([[-p0, q1, 0, 0], [p0, -p1 - q1, q2, 0], [0, p1, -p2 - q2, q3], [1, 1, 1, 1]])
 print('\n Mmod= \n',Mmod)
 print('\n det(Mmod)= \n',Mmod.det()) #**se puede con la inversa (det=!0) y también con solve()
-
 
 #PiMmod = Pi * Mmod
 PiMmod =  Mmod * Pi.T
@@ -159,6 +161,32 @@ print('\n Pt_minus_1I_by_Pit : \n', Pt_minus_1I_by_Pit)
 
 res_0 = solve(Pt_minus_1I_by_Pit, Pi.T) #it returns the eigenvector for the eigenvale of lambda=1
 print('\n res_0 = \n', res_0) # eigenvalues: this is the solution of (A-lambda*I)*x=0, with lambda=1. So it is necessary to normalize by the adding_up_to_1 probabilities)
+
+############################################################################################
+print("\n Another way to do it more automatically:\n")
+
+tam = int(len(P)**0.5) #number of rows/columns
+
+#arranging and solving the linear system to get the stationary propabilities
+Pt_minus_1I = P.T - eigenvalue*sp.eye(tam)
+print('\n Pt_minus_1I:\n', Pt_minus_1I) 
+
+Pt_minus_1I[-1,:] = sp.ones(tam)[-1,:] #replacing the last row with ones (probability constraint)
+
+Pt_minus_1I_replaced = Pt_minus_1I
+
+b = sp.zeros(tam)[-1,:] #independent row vector (zeros)
+b[-1] = 1  #replacing the last row with one (probability constraint)
+b_replaced = b
+
+Pt_minus_1I_replaced_by_Pit = Pt_minus_1I_replaced * Pi.T
+print('\n Pt_minus_1I_replaced_by_Pit : \n', Pt_minus_1I_replaced_by_Pit)
+
+Pn_calc = solve(Pt_minus_1I_replaced_by_Pit - b_replaced.T , Pi.T) #solving the resulting linear system (passing b_replaced to the left and leaving the right part as 0)
+
+print('\n Stationary probabilities: \n')
+print(' Pn_calc =', pretty(Pn_calc)) #pretty used to show it more beautifully
+###########################################################################################
 
 print ("Another way to get the eigenvalue for lambda = 1 (without using the transposed):")
 
